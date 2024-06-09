@@ -1,0 +1,58 @@
+training:
+  env:
+    local_rank: 0
+    precision: bf16
+    lora_r: 8
+    lora_alpha: 16
+    lora_dropout: 5e-2
+    lora_target_modules: 'q_proj,v_proj'
+    conv_type: conv_food_assistant
+  procedure:
+    epochs: 16
+    steps_per_epoch: 500
+    grad_accumulation_steps: 10
+    start_epoch: 1
+    batch_size: 2
+    val_batch_size: 1
+    workers: 4
+    auto_resume: True
+    resume: 'FoodLMM_Chat'
+    resume_freq: 2
+    print_freq: 2
+    save_freq: 4
+    val_freq: 4
+  hypers:
+    lr: 3e-4
+    ce_loss_weight: 1.
+    dice_loss_weight: .5
+    bce_loss_weight: 2.
+    nutrition_loss_weight: .1
+    explanatory: .1
+    beta1: .9
+    beta2: .95
+path:
+  init_ckpt_dir: ./FoodLISA/runs/ckpt_model/FoodLMM_S1/9500
+  sam_ckpt_dir: ./LISA-qhy/SAM/sam_vit_h_4b8939.pth
+  dataset_dir: ./dataset
+  bert_dir: ./bert-large-uncased
+  ckpt_dir: ./runs
+  vis_save_path: ./output_img
+  exp_name: FoodLMM_Chat
+model:
+  structure:
+    vision_tower: openai/clip-vit-large-patch14
+    out_dim: 256
+  input:
+    image_size: 1024
+  output:
+    model_max_length: 3256
+    max_seg_num: 20
+    num_OOD_per_sample: 3
+data:
+  dataset: reason_seg||mr_conversation||vqa||sem_seg
+  # the first number is for sem_seg (foodseg103 + uecfoodpix)
+  sample_rates: [6, 8, 2, 1, 5, 1]
+  sem_seg: foodseg103||uecfoodpix
+  vqa: recipe1m||nutrition5k||VieroFood172
+  reason_seg: 'FoodReasonSeg'
+  mr_conversation: 'FoodDialogues'
