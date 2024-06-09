@@ -2,8 +2,8 @@
 
 <font size=5><div align='center' > 
 <a href=https://arxiv.org/pdf/2312.14991>**Paper**</a> | 
-<a href="https://huggingface.co/Yueha0/FoodLMM-Chat">**Model**</a> | 
-[**Dataset**](#datasets)  | 
+<a href="https://huggingface.co/Yueha0/FoodLMM-Chat">**Models**</a> | 
+[**Datasets**](#datasets)  | 
 [**Training**](#training)  | 
 [**Local Deployment**](#deployment) </a></div></font>
 
