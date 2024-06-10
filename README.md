@@ -90,7 +90,7 @@ The weights merging processes will be done autonomously, if you couldn't find th
 ```
 cd ./runs/lisa-7b/ckpt_model && python zero_to_fp32.py . ../pytorch_model.bin
 CUDA_VISIBLE_DEVICES="" python merge_lora_weights_and_save_hf_model.py \
-  --version="PATH_TO_LISA" \
+  --cfg_file=train_config.yaml \
   --weight="PATH_TO_pytorch_model.bin" \
   --save_path="PATH_TO_SAVED_MODEL"
 ```
