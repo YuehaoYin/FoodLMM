@@ -51,9 +51,7 @@ class S2N5kDataset(torch.utils.data.Dataset):
         # self.clip_image_processor = CLIPImageProcessor.from_pretrained(vision_tower)
         self.clip_image_processor = vision_tower
 
-        self.image_root = os.path.join(base_image_dir, "Nutrition5k")
-        self.overhead_images = os.path.join(self.image_root, 'imagery', 'realsense_overhead')
-        self.angle_images = os.path.join(self.image_root, 'images')
+        self.image_root = os.path.join(base_image_dir, "Nutrition5k", 'images')
         DATA_DIR = os.path.join(base_image_dir, "Nutrition5k")
         if is_val:
             with open(os.path.join(DATA_DIR, 'FoodDialogues_test.json')) as f:
@@ -118,8 +116,11 @@ class S2N5kDataset(torch.utils.data.Dataset):
 
         idx = random.randint(0, len(self.data) - 1)
         item = self.data[idx]
-        oh_img = os.path.join(self.overhead_images, str(item['dish_id']), 'rgb.png')
-        an_img = os.listdir(os.path.join(self.angle_images, str(item['dish_id'])))[0]
+        imgs = os.listdir(os.path.join(self.image_root, str(item['dish_id'])))
+        oh_img = os.path.join(self.image_root, str(item['dish_id']), 'rgb.png')
+        if 'rgb.png' in imgs:
+            imgs.remove('rgb.png')
+        an_img = imgs[0]
         # print(oh_img, an_img)
         if random.random() > 0.5 and os.path.exists(oh_img):
             image_path = oh_img

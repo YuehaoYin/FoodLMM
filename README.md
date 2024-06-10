@@ -2,8 +2,8 @@
 
 <font size=5><div align='center' > 
 <a href=https://arxiv.org/pdf/2312.14991>**Paper**</a> | 
-<a href="https://huggingface.co/Yueha0/FoodLMM-Chat">**Models**</a> | 
-[**Datasets**](#datasets)  | 
+<a href="https://huggingface.co/Yueha0/FoodLMM-Chat">**Model**</a> | 
+[**Dataset**](#datasets)  | 
 [**Training**](#training)  | 
 [**Local Deployment**](#deployment) </a></div></font>
 
@@ -23,7 +23,7 @@ pip install flash-attn --no-build-isolation
 [UECFoodPixComplete](https://mm.cs.uec.ac.jp/uecfoodpix/)
 
 [//]: # ()
-[//]: # (Note: For Training Stage 1, you can download the extracted Nutrition5k images provided in our FoodDialogues link below, so you don't need to download the original Nutrition5k videos. &#40;But you still need to download the `realsense_overhead` pictures.&#41;)
+_Note: You only need to download the extracted Nutrition5k images provided in our [FoodDialogues](https://huggingface.co/datasets/Yueha0/FoodDialogues) instead of the original Nutrition5k dataset._
 
 [//]: # ()
 
@@ -73,6 +73,8 @@ Download them from the above links, and organize them as follows.
 │   │   ├── cafe_2_id.json
 │   │   ├── dish_metadata_cafe1.csv
 │   │   ├── dish_metadata_cafe2.csv
+│   │   ├── FoodDialogues_train.json
+│   │   ├── FoodDialogues_test.json
 │   │   ├── images
 │   │       └── ...
 ```
